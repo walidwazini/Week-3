@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissor</title>
+</head>
+<body>
+    <h2>Rock Paper Scissor</h2>
+    <button onclick="pressedButton(0)"> Rock </button>
+    <button onclick="pressedButton(1)"> Paper </button>
+    <button onclick="pressedButton(2)"> Scissor </button>
+
+    <p id='message'></p>
+    <h2 id='score'> Computer 0 - User 0</h2>
+
+<script type='text/javascript'>
+    var computerScore = 0;
+    var userScore = 0;
+    
+    function pressedButton(num){
+  // generate random number 0,1,2 which is the computer choise
+    var compSelection = Math.floor(Math.random()*3);
+    var message = '';
+
+    if (num == 0) {
+        if (compSelection == 0){
+        message = " Computer select Rock. DRAW!";
+        }
+        else if (compSelection == 1){
+        message = " Computer select Paper. You LOSE!";
+        computerScore++;
+        }
+        else {
+        message = " Computer select Scissor. You WON!";
+        userScore++;      
+        }
+    }
+    else if ( num == 1) {
+        if (compSelection == 0){
+        message = " Computer select Rock. You WIN!";
+        userScore++;
+        }
+        else if (compSelection == 1){
+        message = " Computer select Paper. DRAW!";
+        }
+        else {
+        message = " Computer select Scissor. You LOSE!";
+        computerScore++;
+        }
+    }
+    else  {
+        if (compSelection == 0){
+        message = " Computer select Rock. You LOSE!";
+        computerScore++;
+        }
+        else if (compSelection == 1){
+        message = " Computer select Paper. You WIN!";
+        userScore++;
+        }
+        else {
+        message = " Computer select Scissor. DRAW!";
+        }
+    } 
+    document.getElementById("message").innerHTML = message;
+    document.getElementById("score").innerHTML =
+    'Walid ' + userScore + " -- Computer : "+ computerScore;
+}
+</script>
+</body>
+</html>
