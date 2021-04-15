@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess A Number</title>
+</head>
+<body>
+    <div id='platform'>
+        <p>Guess number between 0 - 100</p>
+        <input type='number' id="userNumber"><button onClick="guessPressed()" id="guessBtn"> Guess it </button>
+        <br>
+        <br>
+        <button onclick="restartPressed()" hidden='true' id="restartBtn"> Restart the Game</button>
+        <p id="message"></p>
+        <p id="chances"></p>
+    </div>
+
+<script type="text/javascript">
+    var chances = 5;
+    var randomNumber = Math.ceil(Math.random()*100);
+    function guessPressed(){
+        var userNumber = document.getElementById("userNumber").value;
+        var message = "";
+        var chanceMessage = "";
+        chances --;
+        if (randomNumber > userNumber) {
+            message = " too small ";
+            inst = " too small ";
+            chanceMessage = chances + ' chances remaing';
+        }
+        else if (randomNumber < userNumber) {
+            message = "too big";
+            inst = " too small ";
+            chanceMessage = chances + ' chances remaing';
+        }
+        else {
+            message = "CONGRATULATIONS! You are correct";
+        }
+
+
+        document.getElementById("message").innerHTTML = message;
+        document.getElementById("chances").innerHTML = chanceMessage;
+
+
+        if (chances == 0) {
+            document.getElementById('message').innerHTML = 'Game Over. The number is ' + randomNumber;
+            document.getElementById('guessBtn').setAttribute("disabled",true);
+            document.getElementById('restartBtn').removeAttribute("hidden");
+        }
+        //document.getElementById('chances').innerHTTML = chanceMessage;
+    }
+    function restartPressed(){
+        chances = 5;
+        randomNumber = Math.ceil(Math.random()*100);
+        document.getElementById("guessBtn").removeAttribute('hidden');
+        document.getElementById('restartBtn').setAttribute('hidden',true); 
+        document.getElementById('message').innerHTML="";
+        document.getElementById("chances").innerHTML="";
+        document.getElementById("userNumber").value="";
+    }
+
+
+</script>
+    
+</body>
+</html>
